@@ -2,14 +2,23 @@ version: "3"
 
 services:
   db:
-    image: postgres:13
+    #image: postgres:13
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+        #- POSTGRES_USER=${POSTGRES_USER}
+        #- POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        #- POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      # - "5432:5432"
+      - "3306:3306"
+
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
 

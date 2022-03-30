@@ -3,5 +3,5 @@
 #python manage.py db migrate
 #python manage.py db upgrade
 #python manage.py run
-cd app
-python uvicorn main:app --reload
+# cd app
+uvicorn main:app --reload
